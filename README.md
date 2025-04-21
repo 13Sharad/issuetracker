@@ -1,8 +1,8 @@
-# Project Issue Tracker
+# Issue Tracker
 
 ## Overview
 
-The **Project Issue Tracker** is a full-stack application built with React (TypeScript) on the frontend, Node.js with Express on the backend, and MongoDB for data persistence. It allows users to create and manage projects and track associated issues with status, priority, and descriptions.
+The **Issue Tracker** is a full-stack application built with React (TypeScript) on the frontend, Node.js with Express on the backend, and MongoDB for data persistence. It allows users to create and manage projects and track associated issues with status, priority, and descriptions.
 
 ---
 
@@ -206,4 +206,3 @@ MIT License
 ---
 
 Thank you for checking out the **Project Issue Tracker**! 🚀
-
