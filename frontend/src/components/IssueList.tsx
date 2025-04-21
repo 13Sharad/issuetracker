@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface Issue {
@@ -22,6 +22,12 @@ const IssueList = ({ issues, onFilter, currentFilter = "" }: Props) => {
   const handleIssueClick = (id: string) => {
     navigate(`/issues/${id}`);
   };
+  useEffect(() => {
+    if (bottomRef.current) {
+      (bottomRef.current as HTMLDivElement).scrollIntoView({ behavior: "smooth" });
+    }
+  }, [issues]);
+  
   return (
     <div className="container mx-auto p-4 md:p-6">
       {/* Header and Filter */}
@@ -44,13 +50,6 @@ const IssueList = ({ issues, onFilter, currentFilter = "" }: Props) => {
               <option value="Done">Done</option>
             </select>
           </div>
-
-          {/* <button
-            onClick={() => navigate('/issues/new')}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
-          >
-            + New Issue
-          </button> */}
         </div>
       </div>
 
@@ -59,12 +58,6 @@ const IssueList = ({ issues, onFilter, currentFilter = "" }: Props) => {
       {issues.length === 0 ? (
         <div className="bg-gray-50 rounded-lg p-8 text-center">
           <p className="text-gray-500">No issues found</p>
-          {/* <button
-            onClick={() => navigate('/issues/new')}
-            className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
-          >
-            Create New Issue
-          </button> */}
         </div>
       ) : (
         <div className="flex flex-col gap-4">

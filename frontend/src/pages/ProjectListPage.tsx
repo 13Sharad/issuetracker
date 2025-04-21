@@ -7,8 +7,12 @@ const ProjectListPage = () => {
   const [projects, setProjects] = useState([]);
 
   const fetchProjects = async () => {
-    const { data } = await API.get('/projects');
-    setProjects(data);
+    try {
+      const { data } = await API.get('/projects');
+      setProjects(data);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+    }
   };
 
   useEffect(() => {
@@ -20,7 +24,7 @@ const ProjectListPage = () => {
     <div className="max-w-6xl mx-auto">
       {/* Header */}
       <header className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-2">Project Tracker</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-2">Issue Tracker</h1>
         <p className="text-indigo-700">Manage your projects and issues efficiently</p>
       </header>
   
@@ -31,7 +35,6 @@ const ProjectListPage = () => {
             <h2 className="text-xl font-semibold text-indigo-800 mb-4">Create New Project</h2>
             <CreateProjectForm 
               onProjectCreated={fetchProjects} 
-            //   className="space-y-4"
             />
           </div>
         </div>
@@ -42,32 +45,11 @@ const ProjectListPage = () => {
             <div className="p-6 border-b border-gray-100">
               <div className="flex justify-between items-center">
                 <h2 className="text-xl font-semibold text-indigo-800">Your Projects</h2>
-                {/* <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search projects..."
-                    className="pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-transparent"
-                  />
-                  <svg
-                    className="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </div> */}
               </div>
             </div>
             
             <ProjectList 
               projects={projects} 
-            //   className="divide-y divide-gray-100"
             />
             
             {/* Pagination */}
